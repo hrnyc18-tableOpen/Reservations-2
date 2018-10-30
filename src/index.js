@@ -14,6 +14,7 @@ class App extends React.Component {
 
     this.state = {
       available: [],
+      partySizeOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       partysize: 1,
       time: "5:30"
       // timesbooked: 415
@@ -45,6 +46,7 @@ class App extends React.Component {
   }
 
   setPartySize(e) {
+    console.log("in set party size");
     var value = e.target.value;
     this.setState({
       partysize: value
@@ -73,7 +75,7 @@ class App extends React.Component {
         <div>
           <PartySize
             setPartySize={this.setPartySize}
-            partysize={this.state.partysize}
+            partySizeOptions={this.state.partySizeOptions}
           />
         </div>
         <div>

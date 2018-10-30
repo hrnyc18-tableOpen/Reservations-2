@@ -11,7 +11,10 @@ class PartySize extends React.Component {
     return (
       <div>
         <h3>Party Size</h3>
-        <PartySizeDropDown />
+        <PartySizeDropDown
+          setPartySize={this.props.setPartySize}
+          partySizeOptions={this.props.partySizeOptions}
+        />
       </div>
     );
   }

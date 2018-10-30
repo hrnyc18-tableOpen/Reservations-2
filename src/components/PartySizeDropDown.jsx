@@ -1,4 +1,5 @@
 import React from "react";
+import PartySizeDropDownOption from "./PartySizeDropDownOption.jsx";
 
 class PartySizeDropDown extends React.Component {
   constructor(props) {
@@ -9,19 +10,10 @@ class PartySizeDropDown extends React.Component {
   render() {
     return (
       <div>
-        <select>
-          <option value={1}>For 1</option>
-          <option selected="selected" value={2}>
-            For 2
-          </option>
-          <option value={3}>For 3</option>
-          <option value={4}>For 4</option>
-          <option value={5}>For 5</option>
-          <option value={6}>For 6</option>
-          <option value={7}>For 7</option>
-          <option value={8}>For 8</option>
-          <option value={9}>For 9</option>
-          <option value={10}>For 10</option>
+        <select onChange={this.props.setPartySize}>
+          {this.props.partySizeOptions.map((party, i) => {
+            return <PartySizeDropDownOption party={party} key={i} />;
+          })}
         </select>
       </div>
     );
