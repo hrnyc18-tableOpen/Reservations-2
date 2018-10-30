@@ -11,7 +11,7 @@ class Time extends React.Component {
     return (
       <div>
         <h3>Time</h3>
-        <TimeDropDown />
+        <TimeDropDown available={this.props.available} />
       </div>
     );
   }

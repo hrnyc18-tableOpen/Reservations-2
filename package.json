@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm dist/bundle.js",
-    "build-dev": "webpack -d --mode development",
+    "build-dev": "webpack -d --mode development --watch",
     "build-prod": "webpack -p --mode production",
     "start": "webpack-dev-server --hot --mode development"
   },
@@ -38,6 +38,7 @@
     "express": "^4.16.4",
     "mysql": "^2.16.0",
     "react": "^16.6.0",
+    "react-calendar": "^2.17.5",
     "react-dom": "^16.6.0",
     "react-hot-loader": "^4.3.11"
   }
