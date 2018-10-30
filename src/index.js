@@ -60,7 +60,6 @@ class App extends React.Component {
   }
 
   setDate(value) {
-    console.log("in setDate");
     this.setState({
       dateSelected: value
     });
