@@ -14,14 +14,15 @@ class App extends React.Component {
 
     this.state = {
       available: [],
-      partysize: 2,
-      time: "",
-      timesbooked: 415
+      partysize: 1,
+      time: "5:30"
+      // timesbooked: 415
     };
 
     this.setPartySize = this.setPartySize.bind(this);
     this.setTime = this.setTime.bind(this);
     this.hourGenerator = this.hourGenerator.bind(this);
+    // this.addToTimesBooked = this.addToTimesBooked.bind(this);
   }
 
   componentDidMount() {
@@ -57,6 +58,13 @@ class App extends React.Component {
     });
   }
 
+  // addToTimesBooked() {
+  //   var value = (this.state.timesbooked += 1);
+  //   this.setState({
+  //     timesbooked: value
+  //   });
+  // }
+
   render() {
     return (
       <div>
@@ -79,7 +87,10 @@ class App extends React.Component {
           />
         </div>
         <div>
-          <FindTable timesbooked={this.state.timesbooked} />
+          <FindTable
+            timesbooked={this.state.timesbooked}
+            // addToTimesBooked={this.addToTimesBooked}
+          />
         </div>
         <div>
           <SpecialOffers />
