@@ -35,8 +35,6 @@ class DateSelector extends React.Component {
             <CalendarComponent />
           )}
         </div>
-        {/* <DateList />
-        <CalendarComponent /> */}
       </div>
     );
   }
