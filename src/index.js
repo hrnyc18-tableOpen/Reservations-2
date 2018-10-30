@@ -16,12 +16,14 @@ class App extends React.Component {
       available: [],
       partysize: 2,
       time: "",
-      timesbooked: 415
+      timesbooked: 415,
+      dateSelected: ""
     };
 
     this.setPartySize = this.setPartySize.bind(this);
     this.setTime = this.setTime.bind(this);
     this.hourGenerator = this.hourGenerator.bind(this);
+    this.setDate = this.setDate.bind(this);
   }
 
   componentDidMount() {
@@ -57,6 +59,13 @@ class App extends React.Component {
     });
   }
 
+  setDate(value) {
+    console.log("in setDate");
+    this.setState({
+      dateSelected: value
+    });
+  }
+
   render() {
     return (
       <div>
@@ -69,7 +78,7 @@ class App extends React.Component {
           />
         </div>
         <div>
-          <DateSelector />
+          <DateSelector setDate={this.setDate} />
         </div>
         <div>
           <Time

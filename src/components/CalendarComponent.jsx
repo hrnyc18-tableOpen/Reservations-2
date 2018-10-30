@@ -4,19 +4,20 @@ import Calendar from "react-calendar";
 class CalendarComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      date: new Date()
-    };
-    this.changeDate = this.changeDate.bind(this);
+    // this.state = {
+    //   date: new Date()
+    // };
+    // this.changeDate = this.changeDate.bind(this);
   }
 
   // onChange = (date) => this.setState({ date });
 
-  changeDate(date) {
-    this.setState({
-      date: date
-    });
-  }
+  // changeDate(date) {
+  //   console.log("date changed to " + date);
+  //   this.setState({
+  //     date: date
+  //   });
+  // }
 
   render() {
     return (
@@ -24,7 +25,9 @@ class CalendarComponent extends React.Component {
         <Calendar
           onChange={this.onChange}
           value={this.state.date}
-          minDetail="Month"
+          minDetail="month"
+          onClickDay={(value) => this.props.setDate(value)}
+          // onChange={this.props.hideCalendar}
         />
       </div>
     );

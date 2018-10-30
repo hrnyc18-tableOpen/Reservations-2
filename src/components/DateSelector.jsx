@@ -32,7 +32,10 @@ class DateSelector extends React.Component {
           {this.state.showCalendar === false ? (
             <DateList />
           ) : (
-            <CalendarComponent minDetail="month" />
+            <CalendarComponent
+              hideCalendar={this.hideCalendar}
+              setDate={this.props.setDate}
+            />
           )}
         </div>
       </div>
