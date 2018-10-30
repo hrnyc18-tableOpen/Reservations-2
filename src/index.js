@@ -14,16 +14,27 @@ class App extends React.Component {
 
     this.state = {
       available: [],
+<<<<<<< HEAD
       partysize: 2,
       time: "",
       timesbooked: 415,
       dateSelected: ""
+=======
+      partySizeOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      partysize: 1,
+      time: "5:30"
+      // timesbooked: 415
+>>>>>>> 43af5611949256c6ad499682adcc0ecb0426e756
     };
 
     this.setPartySize = this.setPartySize.bind(this);
     this.setTime = this.setTime.bind(this);
     this.hourGenerator = this.hourGenerator.bind(this);
+<<<<<<< HEAD
     this.setDate = this.setDate.bind(this);
+=======
+    // this.addToTimesBooked = this.addToTimesBooked.bind(this);
+>>>>>>> 43af5611949256c6ad499682adcc0ecb0426e756
   }
 
   componentDidMount() {
@@ -46,6 +57,7 @@ class App extends React.Component {
   }
 
   setPartySize(e) {
+    console.log("in set party size");
     var value = e.target.value;
     this.setState({
       partysize: value
@@ -73,7 +85,7 @@ class App extends React.Component {
         <div>
           <PartySize
             setPartySize={this.setPartySize}
-            partysize={this.state.partysize}
+            partySizeOptions={this.state.partySizeOptions}
           />
         </div>
         <div>
@@ -87,7 +99,10 @@ class App extends React.Component {
           />
         </div>
         <div>
-          <FindTable timesbooked={this.state.timesbooked} />
+          <FindTable
+            timesbooked={this.state.timesbooked}
+            // addToTimesBooked={this.addToTimesBooked}
+          />
         </div>
         <div>
           <SpecialOffers />
