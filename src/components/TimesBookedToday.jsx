@@ -6,7 +6,9 @@ class TimesBookedToday extends React.Component {
   }
 
   render() {
-    return <div>Booked {this.props.timesbooked} times today</div>;
+    return (
+      <div>Booked {Math.floor(Math.random() * 100 + 350)} times today</div>
+    );
   }
 }
 

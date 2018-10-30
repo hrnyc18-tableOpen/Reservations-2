@@ -11,7 +11,10 @@ class Time extends React.Component {
     return (
       <div>
         <h3>Time</h3>
-        <TimeDropDown available={this.props.available} />
+        <TimeDropDown
+          available={this.props.available}
+          setTime={this.props.setTime}
+        />
       </div>
     );
   }
