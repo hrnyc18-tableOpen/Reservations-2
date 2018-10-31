@@ -19,6 +19,7 @@ class DateSelector extends React.Component {
   }
 
   hideCalendar() {
+    console.log("in hideCalendar");
     this.setState({
       showCalendar: false
     });
@@ -30,7 +31,7 @@ class DateSelector extends React.Component {
         <h3>Date</h3>
         <div onClick={this.showCalendar} onChange={this.hideCalendar}>
           {this.state.showCalendar === false ? (
-            <DateList />
+            <DateList dateSelected={this.props.dateSelected} />
           ) : (
             <CalendarComponent
               hideCalendar={this.hideCalendar}

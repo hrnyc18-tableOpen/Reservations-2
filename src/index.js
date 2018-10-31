@@ -28,6 +28,8 @@ class App extends React.Component {
     this.setDate = this.setDate.bind(this);
   }
 
+  // change date to workable thing JSON.stringify(value).slice(1, 11)
+
   componentDidMount() {
     var times = this.hourGenerator();
     this.setState({
@@ -80,7 +82,10 @@ class App extends React.Component {
           />
         </div>
         <div>
-          <DateSelector setDate={this.setDate} />
+          <DateSelector
+            setDate={this.setDate}
+            dateSelected={this.state.dateSelected}
+          />
         </div>
         <div>
           <Time
