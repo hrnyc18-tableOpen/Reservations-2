@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS tableopenreservations;
+
 CREATE DATABASE tableopenreservations;
 
 USE tableopenreservations;
@@ -16,9 +18,8 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `restaurants`;
 		
 CREATE TABLE `restaurants` (
-  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `name` VARCHAR(50) NULL DEFAULT NULL,
-  `totaltables` INTEGER NULL,
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -30,10 +31,9 @@ CREATE TABLE `restaurants` (
 DROP TABLE IF EXISTS `tables`;
 		
 CREATE TABLE `tables` (
-  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
   `seats` INTEGER NULL DEFAULT NULL,
-  `total` INT NULL
-  `id_restaurants` INTEGER NULL DEFAULT NULL,
+  `id_restaurants` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
   
 );
@@ -46,7 +46,7 @@ CREATE TABLE `tables` (
 DROP TABLE IF EXISTS `bookings`;
 		
 CREATE TABLE `bookings` (
-  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
   `starttime` TIME NULL DEFAULT NULL,
   `endtime` TIME NULL DEFAULT NULL,
   `resdate` DATE NULL DEFAULT NULL,
@@ -59,7 +59,6 @@ CREATE TABLE `bookings` (
 -- ---
 
 ALTER TABLE `tables` ADD FOREIGN KEY (id_restaurants) REFERENCES `restaurants` (`id`);
-ALTER TABLE `tables` ADD FOREIGN KEY (total) REFERENCES `restaurants` (`totalTables`);
 ALTER TABLE `bookings` ADD FOREIGN KEY (id_tables) REFERENCES `tables` (`id`);
 
 -- ---

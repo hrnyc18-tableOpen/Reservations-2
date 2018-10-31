@@ -2,11 +2,9 @@ var mysql = require("mysql");
 
 const connection = mysql.createConnection({
   host: "localhost",
-  user: "rilegan",
+  user: "root",
   password: "running1",
-  database: "tableOpen"
+  database: "tableopenreservations"
 });
 
-const db = connection.connect();
-
-module.exports(db);
+module.exports = connection;

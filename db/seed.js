@@ -1,3 +1,5 @@
+const db = require("./index.js");
+
 // seed tables table
 // create function to generate random number of seating availablebility for 2, 4, 6 people
 
@@ -66,9 +68,9 @@ var restaurantList = [
   "Clinton Street Bakery"
 ];
 
-function totalTables() {
-  return Math.floor(Math.random() * 50 + 5);
-}
+// function totalTables() {
+//   return Math.floor(Math.random() * 50 + 5);
+// }
 
 function randomRestaurant() {
   var i = Math.floor(Math.random() * 50);
@@ -76,61 +78,70 @@ function randomRestaurant() {
 }
 
 function insertDummyDataRestaurant() {
-  var total = totalTables();
   var res = randomRestaurant();
 
   db.query(
     `
-      INSERT INTO restaurants (name, totaltables)
-      VALUES (?, ?)
+      INSERT INTO restaurants (name)
+      VALUES (?)
     `,
-    [res, total],
+    [res],
     (err, data) => {
       if (err) {
         console.log("seed restaurants err: ", err);
       } else {
-        callback(null, data);
+        console.log(data);
       }
     }
   );
 }
 
-// function tableGenerator() {
-//   var sizes = [2, 4, 6];
-//   var i = Math.random() * 3;
-//   return sizes[i];
-// }
+insertDummyDataRestaurant();
 
-// function insertDummyDataTables() {
-//   var tableNum;
+// *********************
 
-//   db.query(
-//     `
-//     SELECT totalTables from restaurants
-//   `,
-//     (err, data) => {
-//       if (err) {
-//         console.log(err);
-//       } else {
-//         tableNum = data;
-//       }
-//     }
-//   );
+function tableGenerator() {
+  var sizes = [2, 4, 6];
+  var i = Math.random() * 3;
+  return sizes[i];
+}
 
-//   for (var i = 0; i < tableNum; i++) {
-//     db.query(
-//       `
-//       INSERT INTO tables (seat)
-//       VALUES (?)
-//     `,
-//       [],
-//       (err, data) => {
-//         if (err) {
-//           console.log("seed tables err: ", err);
-//         } else {
-//           callback(null, data);
-//         }
-//       }
-//     );
-//   }
-// }
+function insertDummyDataTables() {
+  var id_restaurant;
+
+  db.query(
+    `
+    SELECT id from restaurants
+  `,
+    (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        id_restaurant = data;
+      }
+    }
+  );
+
+  function tableNum() {
+    Math.floor(Math.random() * 20 + 8);
+  }
+
+  var num = tableNum();
+
+  for (var i = 0; i <= num; i++) {
+    db.query(
+      `
+      INSERT INTO tables (seat, id_restaurant)
+      VALUES (?, ?)
+    `,
+      [],
+      (err, data) => {
+        if (err) {
+          console.log("seed tables err: ", err);
+        } else {
+          callback(null, data);
+        }
+      }
+    );
+  }
+}
