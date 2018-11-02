@@ -1,145 +1,127 @@
 const db = require("./index.js");
 
-// var restaurantList = [
-//   "Frenchette",
-//   "Xi'an",
-//   "Le Coucou",
-//   "Wildair",
-//   "Uncle Boons",
-//   "Prince Street Pizza",
-//   "Katz Delicatessen",
-//   "Atla",
-//   "Via Carota",
-//   "Superiority Burger",
-//   "Alidoro",
-//   "Blacktap",
-//   "Cafe Altro Paradiso",
-//   "Hale and Hearty",
-//   "Essen",
-//   "Blue Ribber Fried Chicken",
-//   "Madame Vo",
-//   "Grey Dog",
-//   "Tim Ho Wan",
-//   "Rosartio",
-//   "Momofuku",
-//   "Ippudo",
-//   "Tatsu",
-//   "Shuko",
-//   "Los Tacos",
-//   "Nur",
-//   "The Mill",
-//   "Sadelles",
-//   "Amelia's Diner",
-//   "Ivan Ramen",
-//   "John's Pizza",
-//   "Gotan",
-//   "Sanpanino",
-//   "Kaffe 1668",
-//   "The Grill",
-//   "Paul's Da Burger",
-//   "Kingston Hall",
-//   "Victor's Cafe",
-//   "Torishin",
-//   "Lilia",
-//   "OatMeals",
-//   "Juice Press",
-//   "Wichcraft",
-//   "Brodo",
-//   "Salud",
-//   "Oscars",
-//   "Dr. Smood",
-//   "Iconic Cafe",
-//   "Clinton Street Bakery"
-// ];
+function createNames() {
+  var restaurantList = [];
+  var name1 = ["Marias", "Rileys", "Matts", "Nicks", "Bobs"];
+  var name2 = [
+    "Bar",
+    "Tavern",
+    "Bakery",
+    "Ristorante",
+    "Tacos",
+    "Snacks",
+    "Tapas",
+    "Fusion",
+    "Inn",
+    "Pizza"
+  ];
 
-// // function totalTables() {
-// //   return Math.floor(Math.random() * 50 + 5);
-// // }
+  for (var i = 0; i < name1.length; i++) {
+    for (var j = 0; j < name2.length; i++) {
+      restaurantList.push(`${name1[i]} ${name2[j]}`);
+    }
+  }
+
+  return restaurantList;
+}
 
 // function randomRestaurant() {
 //   var i = Math.floor(Math.random() * 50);
 //   return restaurantList[i];
 // }
 
-// function insertDummyDataRestaurant() {
-//   var res = randomRestaurant();
+function insertDummyDataRestaurant() {
+  // var res = randomRestaurant();
 
-//   db.query(
-//     `
-//       INSERT INTO restaurants (name)
-//       VALUES (?)
-//     `,
-//     [res],
-//     (err, data) => {
-//       if (err) {
-//         console.log("seed restaurants err: ", err);
-//       } else {
-//         console.log(data);
-//       }
-//     }
-//   );
-// }
+  var restaurantList = createNames();
 
-// insertDummyDataRestaurant();
+  for (var i = 0; i < restaurantList.length; i++) {
+    db.query(
+      `
+        INSERT INTO restaurants (name)
+        VALUES (?)
+      `,
+      [restaurantList[i]],
+      (err, data) => {
+        if (err) {
+          console.log("seed restaurants err: ", err);
+        } else {
+          console.log(data);
+        }
+      }
+    );
+  }
+}
 
-// *********************
+insertDummyDataRestaurant();
 
-// function tableGenerator() {
-//   var sizes = [2, 4, 6];
-//   var i = Math.floor(Math.random() * 3);
-//   return sizes[i];
-// }
+// ************************************************************************
+// ************************************************************************
+// ************************************************************************
 
-// function tableNum() {
-//   return Math.floor(Math.random() * 20 + 8);
-// }
+// seed tables table
 
-// function insertDummyDataTables() {
-//   var id_restaurant = 2;
+function tableGenerator() {
+  var sizes = [2, 4, 6];
+  var i = Math.floor(Math.random() * 3);
+  return sizes[i];
+}
 
-//   // db.query(
-//   //   `
-//   //   SELECT id from restaurants
-//   //   WHERE id = 1
-//   // `,
-//   //   (err, data) => {
-//   //     if (err) {
-//   //       console.log(err);
-//   //     } else {
-//   //       id_restaurant = data;
-//   //     }
-//   //   }
-//   // );
+function tableNum() {
+  return Math.floor(Math.random() * 20 + 8);
+}
 
-//   console.log(id_restaurant);
+function insertDummyDataTables() {
+  var id_restaurant = 2;
 
-//   var num = tableNum();
+  // we know there will be 50 restaurants, name's are not important.
 
-//   console.log(num);
+  // db.query(
+  //   `
+  //   SELECT id from restaurants
+  //   WHERE id = 1
+  // `,
+  //   (err, data) => {
+  //     if (err) {
+  //       console.log(err);
+  //     } else {
+  //       id_restaurant = data;
+  //     }
+  //   }
+  // );
 
-//   for (var i = 0; i <= num; i++) {
-//     var tableSize = tableGenerator();
+  for (var i = 1; i < 51; i++) {
+    var id_restaurant = i;
+    var num = tableNum();
 
-//     db.query(
-//       `
-//       INSERT INTO tables (seats, id_restaurants)
-//       VALUES (?, ?)
-//     `,
-//       [tableSize, id_restaurant],
-//       (err, data) => {
-//         if (err) {
-//           console.log("seed tables err: ", err);
-//         } else {
-//           console.log(data);
-//         }
-//       }
-//     );
-//   }
-// }
+    for (var j = 0; j <= num; j++) {
+      var tableSize = tableGenerator();
 
-// insertDummyDataTables();
+      db.query(
+        `
+        INSERT INTO tables (seats, id_restaurants)
+        VALUES (?, ?)
+      `,
+        [tableSize, id_restaurant],
+        (err, data) => {
+          if (err) {
+            console.log("seed tables err: ", err);
+          } else {
+            console.log(data);
+          }
+        }
+      );
+    }
+  }
+}
 
-// ********************
+insertDummyDataTables();
+
+// ************************************************************************
+// ************************************************************************
+// ************************************************************************
+
+// seed bookings tables
 
 function hourGenerator() {
   var quarterHours = ["00", "15", "30", "45"];
@@ -204,10 +186,10 @@ function insertDummyDataBookings() {
 
     db.query(
       `
-      INSERT INTO bookings (starttime, endtime, resdate)
-      VALUES (?, ?, ?)
+      INSERT INTO bookings (starttime, endtime, resdate, id_tables)
+      VALUES (?, ?, ?, ?)
     `,
-      [starttime, endtime, resdate],
+      [starttime, endtime, resdate, id_tables],
       (err, data) => {
         if (err) {
           console.log("insert booking err: ", err);
@@ -220,15 +202,3 @@ function insertDummyDataBookings() {
 }
 
 insertDummyDataBookings();
-
-// for res
-
-// generate random open time before 12 - 5
-// generate random close time between 9 - 12
-// do this later
-
-// generate random date
-
-// start time
-// end time
-// res date

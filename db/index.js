@@ -7,4 +7,8 @@ const connection = mysql.createConnection({
   database: "tableopenreservations"
 });
 
+function getRez() {
+  connection.query();
+}
+
 module.exports = connection;

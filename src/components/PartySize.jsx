@@ -10,7 +10,7 @@ class PartySize extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="dropDown">
         <Title>Party Size</Title>
         <PartySizeDropDown
           setPartySize={this.props.setPartySize}

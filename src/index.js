@@ -48,9 +48,9 @@ class App extends React.Component {
   }
 
   getEndPoint(time, partysize, dateSelected) {
-    let url = window.location.href.split("/")[3];
+    let url = window.location.href.split("/")[4];
     console.log(url);
-    axios.get(`/restaurants/${url}`, {
+    axios.get(`/reservations/${url}`, {
       params: { time: time, partysize: partysize, dateSelected: dateSelected }
     });
 
