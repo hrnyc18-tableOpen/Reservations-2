@@ -17,11 +17,12 @@ class App extends React.Component {
     this.state = {
       available: [],
       timesbooked: 415,
-      dateSelected: "1",
+      dateSelected: "2018-11-11",
       partySizeOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      partysize: 1,
-      time: "5:30",
-      suggestedReservations: ["7:00", "7:15", "8:30", "8:45", "9:00"]
+      partysize: 4,
+      time: "07:15:00",
+      suggestedReservations: ["7:00", "7:15", "8:30", "8:45", "9:00"],
+      noAvailability: false
       // timesbooked: 415
     };
 
@@ -67,6 +68,24 @@ class App extends React.Component {
     }
 
     return times;
+  }
+
+  generateMockTimes(time) {
+    var result = [];
+    var quarterHours = ["00", "15", "30", "45"];
+    var num = parseInt(time[0]);
+    var minIndex = quarterHours.indexOf(time.slice(-2));
+  }
+
+  randomizeAvailability(time) {
+    var num = Math.floor(Math.random() * 6 + 1);
+
+    if (num === 4) {
+      this.setState({
+        noAvailability: true
+      });
+    } else {
+    }
   }
 
   setPartySize(e) {

@@ -9,7 +9,12 @@ class SpecialOffers extends React.Component {
     return (
       <div>
         Special offers available.
-        <a href=""> See Details</a>
+        <span>
+          <a href="" className="link">
+            {" "}
+            See Details
+          </a>
+        </span>
       </div>
     );
   }

@@ -21,7 +21,7 @@ class CalendarComponent extends React.Component {
 
   render() {
     return (
-      <div id="calendar">
+      <div className="calendar">
         <Calendar
           onChange={this.onChange}
           value={this.state.date}
