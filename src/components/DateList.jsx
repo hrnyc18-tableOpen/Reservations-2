@@ -13,7 +13,7 @@ class DateList extends React.Component {
 
   render() {
     return (
-      <div>
+      <div class="dropDown">
         <select>
           <option value={""}>Today</option>
         </select>

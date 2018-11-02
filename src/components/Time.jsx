@@ -1,5 +1,6 @@
 import React from "react";
 import TimeDropDown from "./TimeDropDown";
+import Title from "../styles/Title";
 
 class Time extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class Time extends React.Component {
   render() {
     return (
       <div>
-        <h3>Time</h3>
+        <Title>Time</Title>
         <TimeDropDown
           available={this.props.available}
           setTime={this.props.setTime}

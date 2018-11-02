@@ -9,8 +9,7 @@ class TimeDropDown extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3 />
+      <div className="dropDown">
         <select onChange={this.props.setTime}>
           {this.props.available.map((timeSlot, i) => {
             return <TimeDropDownOption timeSlot={timeSlot} key={i} />;

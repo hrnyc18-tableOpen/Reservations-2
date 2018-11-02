@@ -1,6 +1,7 @@
 import React from "react";
 import CalendarComponent from "./CalendarComponent";
 import DateList from "./DateList.jsx";
+import Title from "../styles/Title";
 
 class DateSelector extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class DateSelector extends React.Component {
   render() {
     return (
       <div>
-        <h3>Date</h3>
+        <Title>Date</Title>
         <div onClick={this.showCalendar} onChange={this.hideCalendar}>
           {this.state.showCalendar === false ? (
             <DateList dateSelected={this.props.dateSelected} />

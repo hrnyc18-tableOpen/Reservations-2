@@ -1,5 +1,6 @@
 import React from "react";
 import PartySizeDropDown from "./PartySizeDropDown.jsx";
+import Title from "../styles/Title";
 
 class PartySize extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class PartySize extends React.Component {
   render() {
     return (
       <div>
-        <h3>Party Size</h3>
+        <Title>Party Size</Title>
         <PartySizeDropDown
           setPartySize={this.props.setPartySize}
           partySizeOptions={this.props.partySizeOptions}

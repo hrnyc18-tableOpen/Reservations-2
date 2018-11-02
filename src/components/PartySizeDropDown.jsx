@@ -9,7 +9,7 @@ class PartySizeDropDown extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="dropDown">
         <select onChange={this.props.setPartySize}>
           {this.props.partySizeOptions.map((party, i) => {
             return <PartySizeDropDownOption party={party} key={i} />;

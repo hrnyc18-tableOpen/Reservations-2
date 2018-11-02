@@ -7,6 +7,8 @@ import Time from "./components/Time.jsx";
 import FindTable from "./components/FindTable.jsx";
 import SpecialOffers from "./components/SpecialOffers.jsx";
 import DateSelector from "./components/DateSelector.jsx";
+import Heading from "./styles/Heading";
+import TimesBookedToday from "./components/TimesBookedToday.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -15,10 +17,11 @@ class App extends React.Component {
     this.state = {
       available: [],
       timesbooked: 415,
-      dateSelected: "",
+      dateSelected: "1",
       partySizeOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       partysize: 1,
-      time: "5:30"
+      time: "5:30",
+      suggestedReservations: ["7:00", "7:15", "8:30", "8:45", "9:00"]
       // timesbooked: 415
     };
 
@@ -26,6 +29,7 @@ class App extends React.Component {
     this.setTime = this.setTime.bind(this);
     this.hourGenerator = this.hourGenerator.bind(this);
     this.setDate = this.setDate.bind(this);
+    this.getEndPoint = this.getEndPoint.bind(this);
   }
 
   // change date to workable thing JSON.stringify(value).slice(1, 11)
@@ -35,6 +39,22 @@ class App extends React.Component {
     this.setState({
       available: times
     });
+
+    this.getEndPoint(
+      this.state.time,
+      this.state.partysize,
+      this.state.dateSelected
+    );
+  }
+
+  getEndPoint(time, partysize, dateSelected) {
+    let url = window.location.href.split("/")[3];
+    console.log(url);
+    axios.get(`/restaurants/${url}`, {
+      params: { time: time, partysize: partysize, dateSelected: dateSelected }
+    });
+
+    // axios.get("/test");
   }
 
   hourGenerator() {
@@ -72,22 +92,22 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="main">
         {/* <div>Hello {this.props.name}</div>; */}
-        <h3>Make A Reservation </h3>
-        <div>
+        <Heading>Make A Reservation </Heading>
+        <div className="partySize">
           <PartySize
             setPartySize={this.setPartySize}
             partySizeOptions={this.state.partySizeOptions}
           />
         </div>
-        <div>
+        <div className="date">
           <DateSelector
             setDate={this.setDate}
             dateSelected={this.state.dateSelected}
           />
         </div>
-        <div>
+        <div className="time">
           <Time
             setTime={this.setTime}
             time={this.state.time}
@@ -97,10 +117,15 @@ class App extends React.Component {
         <div>
           <FindTable
             timesbooked={this.state.timesbooked}
+            suggestedReservations={this.state.suggestedReservations}
             // addToTimesBooked={this.addToTimesBooked}
           />
         </div>
-        <div>
+        <br />
+        <div className="dayRuined timesBooked">
+          <TimesBookedToday timesbooked={this.state.timesbooked} />
+        </div>
+        <div className="specials">
           <SpecialOffers />
         </div>
       </div>

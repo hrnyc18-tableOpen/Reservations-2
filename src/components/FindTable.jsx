@@ -1,7 +1,6 @@
 import React from "react";
-import FindTableButton from "./FindTableButton.jsx";
-import FindTableResults from "./FindTableResults.jsx";
-import TimesBookedToday from "./TimesBookedToday.jsx";
+import FindTableButton from "./FindTableButton";
+import FindTableResultsList from "./FindTableResultsList.jsx";
 
 class FindTable extends React.Component {
   constructor(props) {
@@ -12,7 +11,8 @@ class FindTable extends React.Component {
     this.setShowTimes = this.setShowTimes.bind(this);
   }
 
-  setShowTimes() {
+  setShowTimes(e) {
+    e.preventDefault();
     this.setState({
       showTimes: true
     });
@@ -23,12 +23,13 @@ class FindTable extends React.Component {
       <div>
         <div onClick={this.setShowTimes}>
           {this.state.showTimes === false ? (
-            <FindTableButton />
+            <FindTableButton>Find A Table</FindTableButton>
           ) : (
-            <FindTableResults />
+            <FindTableResultsList
+              suggestedReservations={this.props.suggestedReservations}
+            />
           )}
         </div>
-        <TimesBookedToday timesbooked={this.props.timesbooked} />
       </div>
     );
   }
