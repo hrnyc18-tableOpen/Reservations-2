@@ -154,5 +154,7 @@ class App extends React.Component {
 
 const AppWithHot = hot(module)(App);
 
-var mountNode = document.getElementById("app");
-ReactDOM.render(<AppWithHot name="Jane" />, mountNode);
+//var mountNode = document.getElementById("app");
+//ReactDOM.render(<AppWithHot name="Jane" />, mountNode);
+
+window.Reservations = AppWithHot;
