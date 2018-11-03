@@ -8,6 +8,7 @@
     "clean": "rm dist/bundle.js",
     "build-dev": "webpack -d --mode development --watch",
     "build-prod": "webpack -p --mode production",
+    "server-dev": "node ./index.js",
     "start": "webpack-dev-server --hot --mode development"
   },
   "repository": {
