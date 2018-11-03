@@ -8,8 +8,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/dist"));
 
-app.listen(8080);
-console.log("listening on 8080");
+app.listen(3030);
+console.log("listening on 3030");
 
 app.get("/reservations/:id", (req, res) => {
   // id form the url
